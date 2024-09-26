@@ -1,0 +1,32 @@
+{
+	"name": "messagebaord",
+	"version": "0.0.1",
+	"main": "server.js",
+	"scripts": {
+		"start": "nodemon server.js",
+		"test": "mocha ./tests/ --ui tdd"
+	},
+	"dependencies": {
+		"body-parser": "^1.15.2",
+		"chai": "^4.2.0",
+		"chai-http": "^3.0.0",
+		"cors": "^2.8.1",
+		"dotenv": "^8.2.0",
+		"express": "^4.14.0",
+		"helmet": "^3.1.0",
+		"mocha": "^3.2.0",
+		"mongodb": "^6.5.0",
+		"mongoose": "^8.6.3"
+	},
+	"repository": {
+		"type": "git"
+	},
+	"keywords": [
+		"node",
+		"express"
+	],
+	"license": "MIT",
+	"devDependencies": {
+		"nodemon": "^3.1.7"
+	}
+}

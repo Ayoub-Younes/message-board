@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Anonymous Message Board</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Anonymous Message Board</h1>
+    </header>
+
+    <main id='testui'>
+      <section class="info">
+        <h2>How It Works</h2>
+        <p style="text-align: center">Welcome to the Anonymous Message Board! Here, users can create threads and engage in discussions without revealing their identities. Each thread supports replies, fostering in-depth conversations. Additionally, users have the ability to report any threads or replies that violate our community guidelines.</p>
+      </section>
+
+      <section class="api-examples">
+        <h2 class="api-examples" style="text-align: center">API Examples:</h2>
+        <section class="threads">
+          <h2 >Threads</h2>
+
+          <section class="thread-get">
+            <h3>Example <code>GET</code> Request</h3>
+            <ul>
+              <li><a href="/api/threads/movie-recommendations">[project url]//api/threads/movie-recommendations</a></li>
+            </ul>
+            <h3>Example Response</h3>
+            <pre><code>
+              [
+              {
+                "_id": "66f55b19f8d3f80d94849c3b",
+                "text": "I just finished watching some amazing movies this year. What do you all think are the top five must-watch movies of 2024? I’d love to hear your recommendations!",
+                "created_on": "2024-09-26T12:39:07.507Z",
+                "bumped_on": "2024-09-26T12:39:07.505Z",
+                "replies": [
+                  {
+                    "_id": "66f55b4bf8d3f80d94849c42",
+                    "text": "Great question, FilmBuff42! I’d definitely recommend \"The Midnight Sun\" for its stunning visuals and emotional depth. Also, don’t miss \"Epic Journey\"; it’s a fantastic adventure film that kept me on the edge of my seat! What other genres are you interested in?",
+                    "created_on": "2024-09-26T12:39:07.505Z"
+                  }
+                ],
+                "replycount": 1
+              },
+              {
+                "_id": "66f54b666997a007eb916f98",
+                "text": "I'm looking for some great movie recommendations! What are your all-time favorites? I love action and thriller genres, but I'm open to anything!",
+                "created_on": "2024-09-26T11:33:52.979Z",
+                "bumped_on": "2024-09-26T11:33:52.977Z",
+                "replies": [
+                  {
+                    "_id": "66f54b8d6997a007eb916f9d",
+                    "text": "If you enjoy action, I highly recommend Inception. It's a mind-bending thriller with amazing visuals and a great plot twist. You won't be disappointed!",
+                    "created_on": "2024-09-26T11:33:52.977Z"
+                  },
+                  {
+                    "_id": "66f54bab6997a007eb916fa2",
+                    "text": "I second that! Inception is a masterpiece. I’d also suggest Mad Max: Fury Road if you haven't seen it yet. It’s non-stop action and has some stunning cinematography. Let me know what you think!",
+                    "created_on": "2024-09-26T11:33:52.977Z"
+                  }
+                ],
+                "replycount": 2
+              }
+              ]
+            </code></pre>
+          </section>
+
+          <section class="thread-post">
+            <h4>Create a New Thread (POST /api/threads/:board)</h4>
+            <form action="/api/threads/test" method="post" id="newThread">
+              <input type='text' placeholder='Board' id='board1' name='board' required=''><br>
+              <textarea placeholder='Thread text...' name='text' required=''></textarea><br>
+              <input type='text' placeholder='Password to delete' name='delete_password' required=''><br>
+              <input type="submit" value="Submit">
+            </form>
+            <hr>
+          </section>
+  
+          <section class="thread-put">
+            <h4>Report a Thread (PUT /api/threads/:board)</h4>
+            <form id="reportThread">
+              <input type='text' placeholder='Board' id='board2' name='board' required=''><br>
+              <input type='text' placeholder='ID to report' name='thread_id' required=''><br>
+              <input type="submit" value="Submit">
+            </form>
+            <hr>
+          </section>
+
+          <section class="delete">
+            <h4>Delete a Thread (DELETE /api/threads/:board)</h4>
+            <form id="deleteThread">
+              <input type='text' placeholder='Board' id='board3' name='board' required=''><br>
+              <input type='text' placeholder='ID to delete' name='thread_id' required=''><br>
+              <input type='text' placeholder='Password' name='delete_password' required=''><br>
+              <input type="submit" value="Submit">
+            </form>
+            <hr>    
+          </section>
+        </section>
+  
+        <section class="replies">
+          <h2>Replies</h2>
+  
+          <section class="replies-get">
+            <section class="thread-get">
+              <h3>Example <code>GET</code> Request</h3>
+              <ul>
+                <li><a href="/api/replies/movie-recommendations?thread_id=66f54b666997a007eb916f98">[project url]/api/replies/movie-recommendations?thread_id=66f54b666997a007eb916f98</a></li>
+              </ul>
+              <h3>Example Response</h3>
+              <pre><code>
+                {
+                  "_id": "66f54b666997a007eb916f98",
+                  "text": "I'm looking for some great movie recommendations! What are your all-time favorites? I love action and thriller genres, but I'm open to anything!",
+                  "created_on": "2024-09-26T11:33:52.979Z",
+                  "bumped_on": "2024-09-26T11:33:52.977Z",
+                  "replies": [
+                    {
+                      "_id": "66f54b8d6997a007eb916f9d",
+                      "text": "If you enjoy action, I highly recommend Inception. It's a mind-bending thriller with amazing visuals and a great plot twist. You won't be disappointed!",
+                      "created_on": "2024-09-26T11:33:52.977Z"
+                    },
+                    {
+                      "_id": "66f54bab6997a007eb916fa2",
+                      "text": "I second that! Inception is a masterpiece. I’d also suggest Mad Max: Fury Road if you haven't seen it yet. It’s non-stop action and has some stunning cinematography. Let me know what you think!",
+                      "created_on": "2024-09-26T11:33:52.977Z"
+                    }
+                  ]
+                }
+              </code></pre>
+            </section>
+          </section>
+  
+          <section class="replies-post">   
+            <h4>Post a New Reply (POST /api/replies/:board)</h4>
+            <form action="/api/replies/test" method="post" id="newReply">
+              <input type='text' placeholder='Board' id='board4' name='board' required=''><br>
+              <input type='text' placeholder='Thread ID' name='thread_id' required=''><br>
+              <textarea placeholder='Reply text...' name='text' required=''></textarea><br>
+              <input type='text' placeholder='Password to delete' name='delete_password' required=''><br>
+              <input type="submit" value="Submit">
+            </form>
+            <hr>
+          </section>
+  
+          <section class="replies-put">
+            <h4>Report a Reply (PUT /api/replies/:board)</h4>
+            <form id="reportReply">
+              <input type='text' placeholder='Board' id='board5' name='board' required=''><br>
+              <input type='text' placeholder='Thread ID' name='thread_id' required=''><br>
+              <input type='text' placeholder='ID to report' name='reply_id' required=''><br>
+              <input type="submit" value="Submit">
+            </form>
+            <hr>
+          </section>
+  
+          <section class="replies-delete">
+            <h4>Delete a Reply (DELETE /api/replies/:board)</h4>
+            <form id="deleteReply">
+              <input type='text' placeholder='Board' id='board6' name='board' required=''><br>
+              <input type='text' placeholder='Thread ID' name='thread_id' required=''><br>
+              <input type='text' placeholder='ID to delete' name='reply_id' required=''><br>
+              <input type='text' placeholder='Password' name='delete_password' required=''><br>
+              <input type="submit" value="Submit">
+            </form>
+            <hr>
+          </section>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <p>Made with ❤️ by <a href="https://github.com/Ayoub-Younes">Ayoub Younes</a></p>
+    </footer>
+  </body>
+</html>
